@@ -1,28 +1,99 @@
-body{
+body {
 	font-family: "Open Sans", Helvetica, Arial, sans-serif;
 	margin: 0;
 	font-size: 12pt;
 }
 
-h1{
+h1 {
 	margin: 0;
 }
 
-h2{
+h1.site-title a{
+	text-decoration: none;
+	color: rgba(94, 113, 185, 0.4);
+	font-size: 27pt;
+	font-weight: bold;
+	text-shadow: 0px 2px 5px;
+}
+
+h2 {
 	margin: 5px 0px;
 }
 
-ul{
+ul {
 	padding: 0;
 	margin: 0;
 	font-size: 0;
 }
 
-ul li{
+ul li {
 	font-size: 12pt;
 }
 
-#wrapper{
+p{
+	margin: 5px 0;
+}
+
+input[name="cost"],input[name="count"] {
+	width: 40px;
+	height: 20px;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+input[name="cost"]:read-only {
+	width: 75px;
+}
+
+input[type=number]:read-only::-webkit-inner-spin-button, input[type=number]:read-only::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+#upper{
+	width: 900px;
+	position: absolute;
+	height: 0px;
+	top: 0px;
+}
+
+#registration{
+	position: absolute;
+	left: 20px;
+	top: 20px;
+	text-align: right;
+	font-size: 15pt;
+}
+
+#registration a, #logout a, #profile a{
+	text-decoration: none;
+	color: black;
+}
+
+form[name="registration"] input, form[name="admin-purchase"] input, form[name="admin-user"] input, form[name="admin-good"] input,  form[name="admin-category"] input{
+	display: block;
+	text-align: center;
+	margin: 0 auto;
+	margin-bottom: 10px;
+}
+
+textarea[name="review"]{
+	min-width: 300px;
+	min-height: 200px;	
+}
+
+#login {
+	position: absolute;
+	right: 20px;
+	top: 10px;
+	text-align: right;
+}
+
+input[name="login"], input[name="pass"] {
+	margin-bottom: 5px;
+}
+
+#wrapper {
 	width: 900px;
 	height: auto;
 	margin: 0 auto;
@@ -31,17 +102,19 @@ ul li{
 	text-align: center;
 }
 
-#page{
+#page {
 	padding-top: 15px;
+	padding-bottom: 20px;
+	box-sizing: border-box;
 }
 
-#site-navigation li{
+#site-navigation li {
 	display: inline-block;
-	background: #fadddf;
+	background: rgba(188, 173, 249, 0.2);
 	border: 1px black solid;
 }
 
-#site-navigation li a{
+#site-navigation li a {
 	display: block;
 	color: #333;
 	font-weight: bold;
@@ -49,30 +122,81 @@ ul li{
 	padding: 5px 7px;
 }
 
-#sidebar{
+#sidebar {
 	float: left;
 	width: 200px;
 	text-align: left;
 	padding-left: 10px;
 	overflow: hidden;
-	background-color: #999;
+	background-color: #BBB;
 	border: 1px black solid;
 	box-sizing: border-box;
 }
 
-#sidebar li a{
+#sidebar li a {
 	text-decoration: none;
-	color: #F8B5B5;
+	color: rgba(94, 113, 185, 1);
 	font-weight: bold;
 }
 
-#content{
+#content {
 	text-align: left;
 	min-height: 500px;
 	padding-left: 215px;
 	padding-right: 10px;
 }
 
-.category{
-	padding-left: 10px;
+.category {
+	padding-left: 13px;
+	padding-bottom: 3px;
+}
+
+.admin-category{
+	padding-left: 50px;
+	text-align: left;
+	padding-bottom: 10px;
+}
+
+.admin-category li{
+	padding-bottom: 7px;
+	list-style-type: disc;
+}
+
+.admin-category li a{
+	text-decoration: none;
+	color: rgb(73, 49, 49);
+	background: rgba(255, 255, 255, 0.5);
+	padding: 2px;
+	margin-top: 5px;
+	box-sizing: border-box;
+	box-shadow: 0 0 1px 1px rgba(139, 124, 124, 1);
+	border-radius: 3px;
+}
+
+.admin-category img{
+	vertical-align: bottom;
+}
+
+#block-categories{
+	width: 300px;
+	margin: 0 auto;
+}
+
+.good{
+	display: inline-block;
+	width: 200px;
+	height: 255px;
+	overflow: hidden;
+	margin-right: 15px;
+	margin-bottom: 10px;
+}
+
+.good a{
+	text-decoration: none;
+	text-align: center;
+	color: black;
+}
+
+.good-name{
+	font-weight: bold;
 }

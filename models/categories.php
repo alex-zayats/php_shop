@@ -1,20 +1,27 @@
 <?php
 require_once '../core/model.php';
+include_once ("../views/functions.php");
+
+$action = getIdFromUrl (); // with parameters
+if (stripos ( $action, "?" ) !== FALSE)
+	$action = substr ( $action, 0, stripos ( $action, "?" ) ); // without parameters
+
 class Categories extends Model {
 	public $id, $name, $id_parent;
-	function newCateory($id, $name, $id_parent) {
-		if ($id == "")
-			$this->id = null;
-		else
-			$this->id = $id;
-		$this->name = $name;
-		$this->id_parent = $id_parent;
-	}
+// 	function newCategory($id, $name, $id_parent) {
+// 		if ($id == "")
+// 			$this->id = null;
+// 		else
+// 			$this->id = $id;
+// 		$this->name = $name;
+// 		$this->id_parent = $id_parent;
+// 	}
 	function getData() {
 		try {
 			$dbh = new PDO ( 'mysql:host=localhost;dbname=iba', USER, PASS );
 			$dbh->setAttribute ( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 			$zapros = 'SELECT * FROM categories';
+			
 			$sth = $dbh->prepare ( $zapros );
 			
 			$sth->execute ();
@@ -45,6 +52,51 @@ class Categories extends Model {
 			$dbh = null;
 		} catch ( PDOException $e ) {
 			echo "Error occurred! " . $e->getMessage ();
+		}
+	}
+	function getCategory($id) {
+		try {
+			$dbh = new PDO ( 'mysql:host=localhost;dbname=iba', USER, PASS );
+			$dbh->setAttribute ( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+			$zapros = 'SELECT * FROM categories WHERE id=:id';
+				
+			$sth = $dbh->prepare ( $zapros );
+				
+			$sth->bindParam ( ':id', $id );
+				
+			$sth->execute ();
+				
+			$sth->setFetchMode ( PDO::FETCH_INTO, $this );
+				
+			$sth->fetch ();
+				
+			// foreach ($result as $propName => $propValue) //если не работает FETCH_INTO
+			// {
+			// $this->{$propName} = $propValue;
+				// }
+					
+			$dbh = null;
+			} catch ( PDOException $e ) {
+				echo "Error occurred! " . $e->getMessage ();
+			}
+		}
+	function updateCategory($id, $name, $id_parent) {
+		try {
+			$dbh = new PDO ( 'mysql:host=localhost;dbname=iba', USER, PASS );
+			$dbh->setAttribute ( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+			$zapros = 'UPDATE categories SET name = :name, id_parent = :id_parent WHERE id = :id';
+			$sth = $dbh->prepare ( $zapros );
+				
+			$data = array (
+					'name' => $name,
+					'id_parent' => $id_parent,
+					'id' => $id
+			);
+				
+			$sth->execute ( $data );
+			$dbh = null;
+		} catch ( PDOException $e ) {
+			echo "Error occurred: " . $e->getMessage ();
 		}
 	}
 	function getNameCategory($id) {
@@ -129,4 +181,23 @@ class Categories extends Model {
 		$parent_path = array_reverse ( $parent_path );
 		return $parent_path;
 	}
+}
+switch ($action) {
+	case "add" :
+		$category = new Categories();
+		$category->saveData($_POST['name'], $_POST['id_parent']);
+		header ( "Location: " . PATHSITE . "/admin-categories" );
+		break;
+	case "remove" :
+		$category = new Categories();
+		$category->deleteData("categories", $_POST['id_category']);
+		header ( "Location: " . PATHSITE . "/admin-categories" );
+		break;
+	case "update" :
+		$category = new Categories();
+		$category->updateCategory($_POST['id_category'], $_POST['name'], $_POST['id_parent']);
+		header ( "Location: " . $_SERVER ['HTTP_REFERER'] );
+		break;
+	default :
+		break;
 }

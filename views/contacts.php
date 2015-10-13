@@ -1,7 +1,7 @@
 <?php
 $GLOBALS ['title'] = "Контакты";
 
-include_once ("header.php");
+include_once ("../views/header.php");
 ?>
 
 <div id="contactsPage">
@@ -19,11 +19,11 @@ include_once ("header.php");
 	<p>
 		<strong>По электронной почте:</strong>
 	</p>
-	<a href="mailto:salesby@wildberries.by" shape="rect">salesby@yandex.by</a>
+	<a href="mailto:salesby@wildberries.by">salesby@yandex.by</a>
 	<p>
 		<strong>По вопросам сотрудничества и рекламы:</strong>
 	</p>
-	<a href="mailto:partners@wildberries.by" shape="rect">partners@yandex.by</a>
+	<a href="mailto:partners@wildberries.by">partners@yandex.by</a>
 	<div class="line">
 		<p>
 			<strong>Адрес для корреспонденции и возврата товара:</strong><br />

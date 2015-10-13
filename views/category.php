@@ -1,6 +1,9 @@
 <?php
+include_once ("../core/model.php");
+
 include_once ("../models/categories.php");
-include_once ("functions.php");
+include_once ("../models/goods.php");
+include_once ("../views/functions.php");
 
 $id_category = getIdFromUrl ();
 
@@ -28,7 +31,14 @@ $good = new Goods ();
 $all_goods = $good->getGoodsFromCategories ( $child_categories );
 
 foreach ( $all_goods as $array => $each ) {
-	echo "<p><a href='".PATHSITE."/good/".$each['id']."'>" . $each ['name'] . ", " . $each ['price'] . "</a></p>";
+	if ($each['is_showed']==1){
+	echo "<div class='good'>";
+	echo "<a href='".PATHSITE."/good/".$each['id']."'><p class='good-name'>" . $each ['name'] . "</p>";
+	if ($each['img_link']=="") $each['img_link'] = "none-link.jpg";
+	echo "<img class='good_img' src='". PATHSITE . "/img/" . $each['img_link'] ."' width='200px' height='200px'><br>";
+	echo "<p>" . $each ['price'] . " руб.</p>";
+	echo "</a></div>";
+	}
 }
 ?>
 </div>

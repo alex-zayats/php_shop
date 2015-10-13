@@ -1,5 +1,66 @@
 RewriteEngine on
 
+RewriteCond %{REQUEST_URI} iba/user/add/?$ [OR]
+RewriteCond %{REQUEST_URI} iba/user/remove/?$ [OR]
+RewriteCond %{REQUEST_URI} iba/user/register/?$ [OR]
+RewriteCond %{REQUEST_URI} iba/user/update/?$ [OR]
+RewriteCond %{REQUEST_URI} iba/user/login/?$ [OR]
+RewriteCond %{REQUEST_URI} iba/user/logout/?$ [OR]
+RewriteCond %{REQUEST_URI} iba/user/login-admin/?$ [OR]
+RewriteCond %{REQUEST_URI} iba/user/logout-admin/?$
+RewriteRule .*  models/users.php [L]
+
+RewriteCond %{REQUEST_URI} iba/good/add/?$ [OR]
+RewriteCond %{REQUEST_URI} iba/good/update/?$ [OR]
+RewriteCond %{REQUEST_URI} iba/good/remove/?$
+RewriteRule .*  models/goods.php [L]
+
+RewriteCond %{REQUEST_URI} iba/category/add/?$ [OR]
+RewriteCond %{REQUEST_URI} iba/category/update/?$ [OR]
+RewriteCond %{REQUEST_URI} iba/category/remove/?$
+RewriteRule .*  models/categories.php [L]
+
+RewriteCond %{REQUEST_URI} iba/purchase/update/?$
+RewriteRule .*  models/purchase.php [L]
+
+RewriteCond %{REQUEST_URI} iba/admin-category/[0-9]+?$
+RewriteRule .* views/admin-category.php [L]
+
+RewriteCond %{REQUEST_URI} iba/admin-category-add/[0-9]+?$
+RewriteRule .* views/admin-category-add.php [L]
+
+RewriteCond %{REQUEST_URI} iba/admin-good/[0-9]+?$
+RewriteRule .* views/admin-good.php [L]
+
+RewriteCond %{REQUEST_URI} iba/admin-good-add/?$
+RewriteRule .* views/admin-good-add.php [L]
+
+RewriteCond %{REQUEST_URI} iba/admin-user-add/?$
+RewriteRule .* views/admin-user-add.php [L]
+
+RewriteCond %{REQUEST_URI} iba/admin-user/[0-9]+?$
+RewriteRule .* views/admin-user.php [L]
+
+RewriteCond %{REQUEST_URI} iba/admin-purchase/[0-9]+?$
+RewriteRule .* views/admin-purchase.php [L]
+
+RewriteCond %{REQUEST_URI} iba/user-profile/?$
+RewriteRule .* views/profile.php [L]
+
+RewriteCond %{REQUEST_URI} iba/registration/?$
+RewriteRule .* views/registration.php [L]
+
+RewriteCond %{REQUEST_URI} iba/purchase/buy?$
+RewriteRule .* views/purchase.php [L]
+
+RewriteCond %{REQUEST_URI} iba/cart/add?$ [OR]
+RewriteCond %{REQUEST_URI} iba/cart/remove?$ [OR]
+RewriteCond %{REQUEST_URI} iba/cart/removeAll?$
+RewriteRule .*  models/cart.php [L]
+
+RewriteCond %{REQUEST_URI} iba/cart/?$
+RewriteRule .* views/cart.php [L]
+
 RewriteCond %{REQUEST_URI} iba/category/[0-9]+$
 RewriteRule .*  views/category.php [L]
 
@@ -8,3 +69,16 @@ RewriteRule .*  views/good.php [L]
 
 RewriteCond %{REQUEST_URI} iba/contacts/?$
 RewriteRule .*  views/contacts.php [L]
+
+RewriteCond %{REQUEST_URI} iba/admin?$ [OR]
+RewriteCond %{REQUEST_URI} iba/admin-goods/?$
+RewriteRule .*  views/admin-goods.php [L]
+
+RewriteCond %{REQUEST_URI} iba/admin-categories/?$
+RewriteRule .*  views/admin-categories.php [L]
+
+RewriteCond %{REQUEST_URI} iba/admin-users/?$
+RewriteRule .*  views/admin-users.php [L]
+
+RewriteCond %{REQUEST_URI} iba/admin-purchases/?$
+RewriteRule .*  views/admin-purchases.php [L]

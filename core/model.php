@@ -1,12 +1,11 @@
 <?php
-
 DEFINE(USER, "root");
 DEFINE(PASS, "root");
 DEFINE(PATHSITE, "http://localhost/iba");
+DEFINE(PATHSAVE, "D:\webserver\home\localhost\www\iba\img\\");
 class Model
 {
 	function deleteData($table, $id){
-	
 		try {
 			$dbh = new PDO('mysql:host=localhost;dbname=iba', USER, PASS);
 			$dbh->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
