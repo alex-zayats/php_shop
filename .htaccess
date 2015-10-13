@@ -1,0 +1,10 @@
+RewriteEngine on
+
+RewriteCond %{REQUEST_URI} iba/category/[0-9]+$
+RewriteRule .*  views/category.php [L]
+
+RewriteCond %{REQUEST_URI} iba/good/[0-9]+$
+RewriteRule .*  views/good.php [L]
+
+RewriteCond %{REQUEST_URI} iba/contacts/?$
+RewriteRule .*  views/contacts.php [L]
